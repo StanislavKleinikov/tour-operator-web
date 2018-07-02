@@ -12,14 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name ="user")
+@Table(name = "user")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,24 +23,24 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "login")
 	private String login;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@OneToOne
 	@JoinColumn(name = "status")
 	private Status status;
-	
+
 	@OneToOne
 	@JoinColumn(name = "role")
 	private Role role;
-	
-	@Column(name = "last_login_date")
+
+	@Column(name = "last_login_date", insertable = false)
 	private Calendar lastLoginDate;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_detail")
 	private UserDetail userDetail;
@@ -70,7 +65,6 @@ public class User implements Serializable {
 		return status;
 	}
 
-	
 	public String getPassword() {
 		return password;
 	}
@@ -171,5 +165,4 @@ public class User implements Serializable {
 				+ role + ", lastLoginDate=" + lastLoginDate + ", userDetail=" + userDetail + "]";
 	}
 
-	
 }

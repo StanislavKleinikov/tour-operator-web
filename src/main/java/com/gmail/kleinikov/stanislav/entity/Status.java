@@ -7,12 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "status")
-public class Status implements Serializable{
+public class Status implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,16 +19,15 @@ public class Status implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "status_name")
-	private String name;	
-	
+	private String name;
+
 	public Status() {
-	
 	}
 
-	public Status(String name) {
-		this.name = name;
+	public Status(long id) {
+		this.id = id;
 	}
 
 	public long getId() {
@@ -81,5 +79,4 @@ public class Status implements Serializable{
 		return "Status [id=" + id + ", name=" + name + "]";
 	}
 
-	
 }

@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,8 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="news")
-public class News implements Serializable{
+@Table(name = "news")
+public class News implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,30 +27,27 @@ public class News implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "topic")
 	private String topic;
-	
+
 	@Column(name = "date")
 	private Calendar date;
-	
+
 	@OneToOne
 	@JoinColumn(name = "status")
 	private Status status;
-	
+
 	@Column(name = "pic")
 	private String pic;
-	
+
 	@Column(name = "text")
 	private String text;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "news_hashtag_list",
-			joinColumns =  @JoinColumn(name = "news_id"),
-	        inverseJoinColumns = @JoinColumn(name = "hashtag_id"))
+	@JoinTable(name = "news_hashtag_list", joinColumns = @JoinColumn(name = "news_id"), inverseJoinColumns = @JoinColumn(name = "hashtag_id"))
 	private Set<Hashtag> tags = new HashSet<>();
 
-    
 	public long getId() {
 		return id;
 	}
@@ -163,10 +159,8 @@ public class News implements Serializable{
 	@SuppressWarnings("deprecation")
 	@Override
 	public String toString() {
-		return "News [id=" + id + ", topic=" + topic + ", date=" + date.getTime().toLocaleString() + ", status=" + status + ", pic=" + pic
-				+ ", text=" + text + "]";
+		return "News [id=" + id + ", topic=" + topic + ", date=" + date.getTime().toLocaleString() + ", status="
+				+ status + ", pic=" + pic + ", text=" + text + "]";
 	}
-
-	
 
 }

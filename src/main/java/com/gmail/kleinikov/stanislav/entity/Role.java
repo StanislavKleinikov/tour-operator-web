@@ -10,26 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="role")
-public class Role implements Serializable{
+@Table(name = "role")
+public class Role implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	@Column(name ="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "role_name")
 	private String name;
 
-	
 	public Role() {
-	
+
 	}
 
-	public Role(String name) {
-		this.name = name;
+	public Role(long id) {
+		this.id = id;
 	}
 
 	public long getId() {
@@ -80,6 +79,5 @@ public class Role implements Serializable{
 	public String toString() {
 		return "Role [id=" + id + ", name=" + name + "]";
 	}
-	
-	
+
 }

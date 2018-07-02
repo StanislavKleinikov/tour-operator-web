@@ -3,39 +3,37 @@ package com.gmail.kleinikov.stanislav.entity;
 import java.io.Serializable;
 import java.util.Calendar;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name ="user_data")
-public class UserDetail implements Serializable{
-	
+@Table(name = "user_data")
+public class UserDetail implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_name")
 	private String lastName;
-	
+
 	@Column(name = "email")
 	private String email;
-	
-	@Column(name = "created_date")
-	private Calendar date;
-	
-	@Column(name ="phone_number")
+
+	@Column(name = "created_date", insertable = false)
+	private Calendar createdDate;
+
+	@Column(name = "phone_number")
 	private String phoneNumber;
 
 	public long getId() {
@@ -70,12 +68,12 @@ public class UserDetail implements Serializable{
 		this.email = email;
 	}
 
-	public Calendar getDate() {
-		return date;
+	public Calendar getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setDate(Calendar date) {
-		this.date = date;
+	public void setCreatedDate(Calendar date) {
+		this.createdDate = date;
 	}
 
 	public String getPhoneNumber() {
@@ -90,7 +88,7 @@ public class UserDetail implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
@@ -108,10 +106,10 @@ public class UserDetail implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		UserDetail other = (UserDetail) obj;
-		if (date == null) {
-			if (other.date != null)
+		if (createdDate == null) {
+			if (other.createdDate != null)
 				return false;
-		} else if (!date.equals(other.date))
+		} else if (!createdDate.equals(other.createdDate))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -141,7 +139,7 @@ public class UserDetail implements Serializable{
 	@Override
 	public String toString() {
 		return "UserDetail [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", date=" + date + ", phoneNumber=" + phoneNumber + "]";
+				+ ", createdDate=" + createdDate + ", phoneNumber=" + phoneNumber + "]";
 	}
 
 }
