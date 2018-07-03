@@ -1,5 +1,7 @@
 package com.gmail.kleinikov.stanislav.dao.impl;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -16,7 +18,7 @@ public class UserDaoImpl implements UserDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public User fetchByCredentials(String login, String password) {
+	public User fetchByCredentials(String login, String password) throws NoResultException {
 
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<User> query = currentSession.createQuery("from User as s where s.login=:login and s.password=:password",
@@ -24,6 +26,7 @@ public class UserDaoImpl implements UserDao {
 		query.setParameter("login", login);
 		query.setParameter("password", password);
 		User user = query.getSingleResult();
+
 		return user;
 	}
 

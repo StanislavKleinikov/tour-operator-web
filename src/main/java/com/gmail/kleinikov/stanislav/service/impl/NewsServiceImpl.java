@@ -7,20 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gmail.kleinikov.stanislav.entity.News;
 import com.gmail.kleinikov.stanislav.dao.NewsDao;
+import com.gmail.kleinikov.stanislav.entity.News;
 import com.gmail.kleinikov.stanislav.service.NewsService;
-
-import static com.gmail.kleinikov.stanislav.util.ConstantValue.*;
 
 @Service
 public class NewsServiceImpl implements NewsService {
-	
+
 	@Autowired
 	private NewsDao newsDao;
 
-	@Override
-	//@Transactional
 	public List<News> actualNewsList() {
 		List<News> news = newsDao.getNews();
 		news = news.stream().filter(x -> "active".equalsIgnoreCase(x.getStatus().getName()))
@@ -31,15 +27,22 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	@Transactional
 	public List<News> getNews() {
-		List<News> news = actualNewsList().stream().limit(NEWS_PER_PAGE).collect(Collectors.toList());
+		List<News> news = actualNewsList();
 		return news;
 	}
-		
+
 	@Override
 	@Transactional
 	public News createNews(News news) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	@Transactional
+	public News getNews(long id) {
+		News news = newsDao.getNewsById(id);
+		return news;
 	}
 
 }

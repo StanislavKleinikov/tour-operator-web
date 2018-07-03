@@ -6,10 +6,10 @@ import com.gmail.kleinikov.stanislav.entity.News;
 
 public interface NewsService {
 
-	List<News> actualNewsList();
-	
 	List<News> getNews();
 
 	News createNews(News news);
+
+	News getNews(long id);
 
 }

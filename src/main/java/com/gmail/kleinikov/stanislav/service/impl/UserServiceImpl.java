@@ -3,6 +3,8 @@ package com.gmail.kleinikov.stanislav.service.impl;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.ROLE_USER;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.STATUS_ACTIVE;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,9 +25,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public User authorise(String login, String password) throws ServiceNoSuchUserException {
-		User user = userDao.fetchByCredentials(login, password);
-		if (user == null) {
-			throw new ServiceNoSuchUserException();
+		User user = null;
+		try {
+			user = userDao.fetchByCredentials(login, password);
+		} catch (NoResultException e) {
+			throw new ServiceNoSuchUserException(e);
 		}
 		return user;
 	}
