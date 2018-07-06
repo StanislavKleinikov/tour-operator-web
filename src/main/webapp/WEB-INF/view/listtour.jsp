@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 	<head>
-    	<spring:url value="/news" var="pageurl" />
+    	<spring:url value="/tour" var="pageurl" />
     	<spring:url value="/resources" var="resources" />
     	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>	
     </head>
@@ -18,16 +18,16 @@
           				
           							       
 				    <div>
-				        <c:set var="pageHolder" value="${newsHolder}" scope="session" />
+				        <c:set var="pageHolder" value="${tourHolder}" scope="session" />
 				        <div class="row page" id="news">          			
-	          			<c:forEach var="news"  items="${newsHolder.pageList}">
+	          			<c:forEach var="news"  items="${pageHolder.pageList}">
 	          				<div class="col-xs-12 col-lg-12 post">
-	          					<img alt="img" src="${resources}/img/${news.getPic()}" width="100%" height="200px">
-	              				<h2>${news.getTopic()}</h2>
-	              				<p>${news.getText()}</p>
-	              				<p>${news.getDate().getTime().toLocaleString()}</p>
-	              				<p><c:forEach var="tag" items="${news.getTags()}"><c:out value="#${tag.getName()}"/></c:forEach></p>
-	              				<p><a class="btn btn-default" href="${pageurl}/${news.id}" role="button">Подробнее &raquo;</a></p>
+	          					<img alt="img" src="${resources}/img/${tour.getPic()}" width="100%" height="200px">
+	              				<h2>${tour.getTopic()}</h2>
+	              				<p>${tour.getText()}</p>
+	              				<p>${tour.getDate().getTime().toLocaleString()}</p>
+	              				<p><c:forEach var="tag" items="${tour.getTags()}"><c:out value="#${tag.getName()}"/></c:forEach></p>
+	              				<p><a class="btn btn-default" href="${pageurl}/${tour.id}" role="button">Подробнее &raquo;</a></p>
 	            			</div><!--/.col-xs-12.col-lg-12-->	          			
 	          			</c:forEach>            		
 	          		</div><!--/row-->
@@ -66,7 +66,7 @@
 		        	<div class="list-group">
 		        		<a class="list-group-item active"></a>
 		            	<a href="promotion/list" class="list-group-item">Акции</a>
-			            <a class="list-group-item">Новости</a>
+			            <a class="list-group-item active">Новости</a>
 			            <a href="tours/list" class="list-group-item">Туры</a> 
 			            <a href="services" class="list-group-item">Услуги</a>
 			            <a href="contact" class="list-group-item">Контакты</a>

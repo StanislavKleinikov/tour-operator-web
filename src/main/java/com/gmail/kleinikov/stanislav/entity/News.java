@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,10 +31,10 @@ public class News implements Serializable {
 	@Column(name = "topic")
 	private String topic;
 
-	@Column(name = "date")
+	@Column(name = "date", insertable = false)
 	private Calendar date;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "status")
 	private Status status;
 

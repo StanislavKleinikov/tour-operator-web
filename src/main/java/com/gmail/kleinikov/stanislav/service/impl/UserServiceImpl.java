@@ -13,7 +13,7 @@ import com.gmail.kleinikov.stanislav.dao.UserDao;
 import com.gmail.kleinikov.stanislav.entity.Role;
 import com.gmail.kleinikov.stanislav.entity.Status;
 import com.gmail.kleinikov.stanislav.entity.User;
-import com.gmail.kleinikov.stanislav.service.ServiceNoSuchUserException;
+import com.gmail.kleinikov.stanislav.exception.ServiceNoSuchUserException;
 import com.gmail.kleinikov.stanislav.service.UserService;
 
 @Service

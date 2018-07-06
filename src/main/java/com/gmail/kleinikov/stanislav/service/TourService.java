@@ -5,9 +5,13 @@ import java.util.List;
 import com.gmail.kleinikov.stanislav.entity.Tour;
 
 public interface TourService {
-	
+
 	List<Tour> fetchAll();
-	
-	Tour fetchTour();
+
+	List<Tour> fetchAllByCountry();
+
+	List<Tour> fetchHot();
+
+	Tour fetchTour(long id);
 
 }

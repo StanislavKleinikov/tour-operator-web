@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gmail.kleinikov.stanislav.entity.User;
-import com.gmail.kleinikov.stanislav.service.ServiceNoSuchUserException;
+import com.gmail.kleinikov.stanislav.exception.ServiceNoSuchUserException;
 import com.gmail.kleinikov.stanislav.service.UserService;
 
 @Controller

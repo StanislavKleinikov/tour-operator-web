@@ -1,6 +1,7 @@
 package com.gmail.kleinikov.stanislav.service;
 
 import com.gmail.kleinikov.stanislav.entity.User;
+import com.gmail.kleinikov.stanislav.exception.ServiceNoSuchUserException;
 
 public interface UserService {
 

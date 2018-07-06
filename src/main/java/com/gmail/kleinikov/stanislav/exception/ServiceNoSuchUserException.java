@@ -1,4 +1,4 @@
-package com.gmail.kleinikov.stanislav.service;
+package com.gmail.kleinikov.stanislav.exception;
 
 public class ServiceNoSuchUserException extends Exception {
 
