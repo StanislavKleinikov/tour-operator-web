@@ -1,6 +1,7 @@
 package com.gmail.kleinikov.stanislav.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,7 @@ public class TourServiceImpl implements TourService {
 	@Override
 	@Transactional
 	public Tour fetchTour(long id) {
-		// TODO Auto-generated method stub
-		return tourDao.fetchTour();
+		return tourDao.fetchTour(id);
 	}
 
 	@Override
@@ -40,8 +40,10 @@ public class TourServiceImpl implements TourService {
 	@Override
 	@Transactional
 	public List<Tour> fetchHot() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Tour> tours = tourDao.fetchAll();
+		tours = tours.stream().filter(x -> "hot".equalsIgnoreCase(x.getStatus().getName()))
+				.collect(Collectors.toList());
+		return tours;
 	}
 
 }

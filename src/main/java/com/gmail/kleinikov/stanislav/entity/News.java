@@ -104,6 +104,18 @@ public class News implements Serializable {
 		this.tags = tags;
 	}
 
+	public String getPreview() {
+		if (null != text) {
+			if (text.length() > 70) {
+				return text.substring(0, 70);
+			} else {
+				return text;
+			}
+		} else {
+			return text;
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

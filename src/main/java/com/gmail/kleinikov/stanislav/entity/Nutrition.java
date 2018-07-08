@@ -1,20 +1,17 @@
 package com.gmail.kleinikov.stanislav.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "resort_data")
-public class ResortDetail implements Serializable {
+@Table(name = "nutrition")
+public class Nutrition implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,14 +20,11 @@ public class ResortDetail implements Serializable {
 	@Column(name = "id")
 	private long id;
 
+	@Column(name = "name")
+	private String name;
+
 	@Column(name = "description")
 	private String description;
-
-	@Column(name = "pic")
-	private String pic;
-
-	@OneToMany(mappedBy = "resort", fetch = FetchType.LAZY)
-	private List<Hotel> hotels;
 
 	public long getId() {
 		return id;
@@ -38,6 +32,14 @@ public class ResortDetail implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -48,29 +50,13 @@ public class ResortDetail implements Serializable {
 		this.description = description;
 	}
 
-	public String getPic() {
-		return pic;
-	}
-
-	public void setPic(String pic) {
-		this.pic = pic;
-	}
-
-	public List<Hotel> getHotels() {
-		return hotels;
-	}
-
-	public void setHotels(List<Hotel> hotels) {
-		this.hotels = hotels;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((pic == null) ? 0 : pic.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -82,7 +68,7 @@ public class ResortDetail implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ResortDetail other = (ResortDetail) obj;
+		Nutrition other = (Nutrition) obj;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -90,17 +76,17 @@ public class ResortDetail implements Serializable {
 			return false;
 		if (id != other.id)
 			return false;
-		if (pic == null) {
-			if (other.pic != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!pic.equals(other.pic))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "ResortDetail [id=" + id + ", description=" + description + ", pic=" + pic + "]";
+		return "Nutrition [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 
 }

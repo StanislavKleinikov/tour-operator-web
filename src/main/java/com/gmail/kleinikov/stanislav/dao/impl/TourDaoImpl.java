@@ -1,6 +1,5 @@
 package com.gmail.kleinikov.stanislav.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -21,24 +20,22 @@ public class TourDaoImpl implements TourDao {
 
 	@Override
 	public List<Tour> fetchAll() {
-		// TODO Auto-generated method stub
-		return new ArrayList<Tour>();
+		Session session = sessionFactory.getCurrentSession();
+		Query<Tour> query = session.createQuery("from Tour", Tour.class);
+		List<Tour> tours = query.getResultList();
+		return tours;
 	}
 
 	@Override
-	public Tour fetchTour() {
+	public Tour fetchTour(long id) {
 		// TODO Auto-generated method stub
 		return new Tour();
 	}
 
 	public List<Hotel> getHotels() {
-
 		Session session = sessionFactory.getCurrentSession();
-
 		Query<Hotel> query = session.createQuery("from Hotel", Hotel.class);
-
 		List<Hotel> hotels = query.getResultList();
-
 		return hotels;
 	}
 

@@ -1,8 +1,10 @@
 package com.gmail.kleinikov.stanislav.exception;
 
-public class ServiceNoSuchUserException extends Exception {
+import java.io.Serializable;
 
-	private static final long serialVersionUID = -9089071786911919243L;
+public class ServiceNoSuchUserException extends Exception implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	public ServiceNoSuchUserException() {
 		super();

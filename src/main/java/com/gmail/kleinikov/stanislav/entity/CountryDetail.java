@@ -71,7 +71,6 @@ public class CountryDetail implements Serializable {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((pic == null) ? 0 : pic.hashCode());
-		result = prime * result + ((resorts == null) ? 0 : resorts.hashCode());
 		return result;
 	}
 
@@ -96,18 +95,12 @@ public class CountryDetail implements Serializable {
 				return false;
 		} else if (!pic.equals(other.pic))
 			return false;
-		if (resorts == null) {
-			if (other.resorts != null)
-				return false;
-		} else if (!resorts.equals(other.resorts))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "CountryDetail [id=" + id + ", description=" + description + ", pic=" + pic + ", resorts=" + resorts
-				+ "]";
+		return "CountryDetail [id=" + id + ", description=" + description + ", pic=" + pic + "]";
 	}
 
 }

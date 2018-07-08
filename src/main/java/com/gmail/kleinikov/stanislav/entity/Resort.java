@@ -28,6 +28,10 @@ public class Resort implements Serializable {
 	@Column(name = "name")
 	private String name;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "country")
+	private Country country;
+
 	@ManyToOne
 	@JoinColumn(name = "status")
 	private Status status;
@@ -52,6 +56,14 @@ public class Resort implements Serializable {
 		this.name = name;
 	}
 
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
 	public Status getStatus() {
 		return status;
 	}
@@ -72,6 +84,7 @@ public class Resort implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((resortDetail == null) ? 0 : resortDetail.hashCode());
@@ -88,6 +101,11 @@ public class Resort implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Resort other = (Resort) obj;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -110,7 +128,8 @@ public class Resort implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Resort [id=" + id + ", name=" + name + ", status=" + status + ", resortDetail=" + resortDetail + "]";
+		return "Resort [id=" + id + ", name=" + name + ", country=" + country.getName() + ", status=" + status.getName()
+				+ ", resortDetail=" + resortDetail + "]";
 	}
 
 }

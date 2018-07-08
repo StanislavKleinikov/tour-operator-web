@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,14 +20,6 @@ public class HotelDetail implements Serializable {
 	@Column(name = "id")
 	private long id;
 
-	@ManyToOne
-	@JoinColumn(name = "resort")
-	private Resort resort;
-
-	@ManyToOne
-	@JoinColumn(name = "category")
-	private Category category;
-
 	@Column(name = "description")
 	private String description;
 
@@ -42,22 +32,6 @@ public class HotelDetail implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Resort getResort() {
-		return resort;
-	}
-
-	public void setResort(Resort resort) {
-		this.resort = resort;
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
 	}
 
 	public String getDescription() {
@@ -80,11 +54,9 @@ public class HotelDetail implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((pic == null) ? 0 : pic.hashCode());
-		result = prime * result + ((resort == null) ? 0 : resort.hashCode());
 		return result;
 	}
 
@@ -97,11 +69,6 @@ public class HotelDetail implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		HotelDetail other = (HotelDetail) obj;
-		if (category == null) {
-			if (other.category != null)
-				return false;
-		} else if (!category.equals(other.category))
-			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -114,18 +81,12 @@ public class HotelDetail implements Serializable {
 				return false;
 		} else if (!pic.equals(other.pic))
 			return false;
-		if (resort == null) {
-			if (other.resort != null)
-				return false;
-		} else if (!resort.equals(other.resort))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "HotelDetail [id=" + id + ", resort=" + resort + ", category=" + category + ", description="
-				+ description + ", pic=" + pic + "]";
+		return "HotelDetail [id=" + id + ", description=" + description + ", pic=" + pic + "]";
 	}
 
 }

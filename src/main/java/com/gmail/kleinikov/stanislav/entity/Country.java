@@ -110,7 +110,8 @@ public class Country implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Country [id=" + id + ", name=" + name + ", status=" + status + ", countryDetail=" + countryDetail + "]";
+		return "Country [id=" + id + ", name=" + name + ", status=" + status.getName() + ", countryDetail="
+				+ countryDetail + "]";
 	}
 
 }

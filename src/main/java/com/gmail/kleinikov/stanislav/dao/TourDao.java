@@ -8,5 +8,6 @@ public interface TourDao {
 
 	List<Tour> fetchAll();
 
-	Tour fetchTour();
+	Tour fetchTour(long id);
+
 }

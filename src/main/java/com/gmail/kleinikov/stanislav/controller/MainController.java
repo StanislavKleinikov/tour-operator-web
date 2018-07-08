@@ -1,38 +1,39 @@
 package com.gmail.kleinikov.stanislav.controller;
 
-import java.util.List;
-import java.util.Map;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_HOME;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gmail.kleinikov.stanislav.entity.News;
+import com.gmail.kleinikov.stanislav.entity.Tour;
 import com.gmail.kleinikov.stanislav.service.NewsService;
-
-import static com.gmail.kleinikov.stanislav.util.ConstantValue.*;
+import com.gmail.kleinikov.stanislav.service.TourService;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	private NewsService newsService;
-	
+
+	@Autowired
+	private TourService tourService;
+
 	@RequestMapping("/home")
-	public String home(Model model) {	
-		
+	public String home(Model model) {
+
 		List<News> news = newsService.getNews();
-						
-		model.addAttribute("news" ,news);
-		
+
+		List<Tour> tours = tourService.fetchHot();
+
+		model.addAttribute("news", news);
+		model.addAttribute("tours", tours);
+
 		return PAGE_HOME;
 	}
-	
+
 }

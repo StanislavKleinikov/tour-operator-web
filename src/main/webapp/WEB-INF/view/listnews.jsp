@@ -21,10 +21,10 @@
 				        <c:set var="pageHolder" value="${newsHolder}" scope="session" />
 				        <div class="row page" id="news">          			
 	          			<c:forEach var="news"  items="${newsHolder.pageList}">
-	          				<div class="col-xs-12 col-lg-12 post">
-	          					<img alt="img" src="${resources}/img/${news.getPic()}" width="100%" height="200px">
+	          				<div class="col-xs-12 col-lg-12 post border border-dark">
+	          					<img alt="img" src="${resources}/img/news/${news.getPic()}" width="700" height="200">
 	              				<h2>${news.getTopic()}</h2>
-	              				<p>${news.getText()}</p>
+	              				<p>${news.getPreview()}</p>
 	              				<p>${news.getDate().getTime().toLocaleString()}</p>
 	              				<p><c:forEach var="tag" items="${news.getTags()}"><c:out value="#${tag.getName()}"/></c:forEach></p>
 	              				<p><a class="btn btn-default" href="${pageurl}/${news.id}" role="button">Подробнее &raquo;</a></p>
@@ -65,6 +65,7 @@
 		        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
 		        	<div class="list-group">
 		        		<a class="list-group-item active"></a>
+		        		<a href="../../home" class="list-group-item">Главная</a>
 		            	<a href="promotion/list" class="list-group-item">Акции</a>
 			            <a class="list-group-item">Новости</a>
 			            <a href="tours/list" class="list-group-item">Туры</a> 

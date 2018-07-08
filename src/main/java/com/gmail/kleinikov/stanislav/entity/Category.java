@@ -69,7 +69,6 @@ public class Category implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((hotels == null) ? 0 : hotels.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -89,11 +88,6 @@ public class Category implements Serializable {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (hotels == null) {
-			if (other.hotels != null)
-				return false;
-		} else if (!hotels.equals(other.hotels))
-			return false;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -106,7 +100,7 @@ public class Category implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", hotels=" + hotels + "]";
+		return "Category [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 
 }

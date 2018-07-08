@@ -6,6 +6,7 @@ import java.util.Calendar;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class User implements Serializable {
 	@Column(name = "last_login_date", insertable = false)
 	private Calendar lastLoginDate;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_detail")
 	private UserDetail userDetail;
 
@@ -162,8 +163,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", status=" + status + ", role="
-				+ role + ", lastLoginDate=" + lastLoginDate + ", userDetail=" + userDetail + "]";
+		return "User [id=" + id + ", login=" + login + ", password=" + password + ", status=" + status.getName()
+				+ ", role=" + role.getName() + ", lastLoginDate=" + lastLoginDate + ", userDetail=" + userDetail + "]";
 	}
 
 }

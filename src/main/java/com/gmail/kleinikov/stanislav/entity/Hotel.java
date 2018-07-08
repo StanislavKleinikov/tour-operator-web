@@ -29,6 +29,14 @@ public class Hotel implements Serializable {
 	private String name;
 
 	@ManyToOne
+	@JoinColumn(name = "category")
+	private Category category;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "resort")
+	private Resort resort;
+
+	@ManyToOne
 	@JoinColumn(name = "status")
 	private Status status;
 
@@ -52,6 +60,22 @@ public class Hotel implements Serializable {
 		this.name = name;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Resort getResort() {
+		return resort;
+	}
+
+	public void setResort(Resort resort) {
+		this.resort = resort;
+	}
+
 	public Status getStatus() {
 		return status;
 	}
@@ -72,9 +96,11 @@ public class Hotel implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((hotelDetail == null) ? 0 : hotelDetail.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((resort == null) ? 0 : resort.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
@@ -88,6 +114,11 @@ public class Hotel implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Hotel other = (Hotel) obj;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
 		if (hotelDetail == null) {
 			if (other.hotelDetail != null)
 				return false;
@@ -100,6 +131,11 @@ public class Hotel implements Serializable {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (resort == null) {
+			if (other.resort != null)
+				return false;
+		} else if (!resort.equals(other.resort))
+			return false;
 		if (status == null) {
 			if (other.status != null)
 				return false;
@@ -110,7 +146,8 @@ public class Hotel implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Hotel [id=" + id + ", name=" + name + ", status=" + status + ", hotelDetail=" + hotelDetail + "]";
+		return "Hotel [id=" + id + ", name=" + name + ", category=" + category.getName() + ", resort="
+				+ resort.getName() + ", status=" + status.getName() + ", hotelDetail=" + hotelDetail + "]";
 	}
 
 }
