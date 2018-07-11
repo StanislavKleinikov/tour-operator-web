@@ -1,10 +1,34 @@
-.img-wrap {
+.img{
   position: relative;
+  height: 300px;
+  width: 100%;
+  padding: 10px;
 }
 
-.img-wrap h2 {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+.name {
+    font-size: 17px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    line-height: 1;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    text-align: left;
 }
+
+.price {
+    font-size: 17px;
+    color: #fff;
+    position: absolute;
+    left: 0px;
+    bottom: 6px;
+    line-height: 1;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    text-align: left;
+}
+

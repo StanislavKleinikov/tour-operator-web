@@ -20,8 +20,8 @@ public class TourServiceImpl implements TourService {
 	@Override
 	@Transactional
 	public List<Tour> fetchAll() {
-		// TODO Auto-generated method stub
-		return tourDao.fetchAll();
+		List<Tour> list = tourDao.fetchAll();
+		return list;
 	}
 
 	@Override
@@ -32,9 +32,11 @@ public class TourServiceImpl implements TourService {
 
 	@Override
 	@Transactional
-	public List<Tour> fetchAllByCountry() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Tour> fetchAllByCountry(String country) {
+		List<Tour> list = fetchAll();
+		list = list.stream().filter(x -> country.equalsIgnoreCase(x.getCountry().getName()))
+				.collect(Collectors.toList());
+		return list;
 	}
 
 	@Override

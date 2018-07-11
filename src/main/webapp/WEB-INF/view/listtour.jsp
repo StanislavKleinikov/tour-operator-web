@@ -19,15 +19,13 @@
           							       
 				    <div>
 				        <c:set var="pageHolder" value="${tourHolder}" scope="session" />
-				        <div class="row page" id="news">          			
-	          			<c:forEach var="news"  items="${pageHolder.pageList}">
-	          				<div class="col-xs-12 col-lg-12 post">
-	          					<img alt="img" src="${resources}/img/${tour.getPic()}" width="100%" height="200px">
-	              				<h2>${tour.getTopic()}</h2>
-	              				<p>${tour.getText()}</p>
-	              				<p>${tour.getDate().getTime().toLocaleString()}</p>
-	              				<p><c:forEach var="tag" items="${tour.getTags()}"><c:out value="#${tag.getName()}"/></c:forEach></p>
-	              				<p><a class="btn btn-default" href="${pageurl}/${tour.id}" role="button">Подробнее &raquo;</a></p>
+				        <div class="row page" id="tours">          			
+	          			<c:forEach var="tour"  items="${pageHolder.pageList}">
+	          				<div class="col-xs-12 col-md-6 col-lg-4 post">
+	          					<a href="tour/${tour.id}">	          					
+		          					<img alt="img" class="img-thumbnail img-responsive img-wrap" src="resources/img/hotels/${tour.hotel.hotelDetail.getPic()}/1.jpg" width="100%" height="200">
+		              				<h2>${tour.hotel.getName()}</h2>		              					            			
+	            				</a>
 	            			</div><!--/.col-xs-12.col-lg-12-->	          			
 	          			</c:forEach>            		
 	          		</div><!--/row-->
@@ -62,18 +60,8 @@
     
        			</div><!--/.col-xs-12.col-sm-9-->
 
-		        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-		        	<div class="list-group">
-		        		<a class="list-group-item active"></a>
-		            	<a href="promotion/list" class="list-group-item">Акции</a>
-			            <a class="list-group-item active">Новости</a>
-			            <a href="tours/list" class="list-group-item">Туры</a> 
-			            <a href="services" class="list-group-item">Услуги</a>
-			            <a href="contact" class="list-group-item">Контакты</a>
-			            <a href="info" class="list-group-item">О компании</a>
-		        	</div>
-				</div><!--/.sidebar-offcanvas-->
-				
+		       <jsp:include page="/WEB-INF/view/navigator.jsp"></jsp:include>
+		       <jsp:include page="/WEB-INF/view/searchtourpanel.jsp"></jsp:include>				
 			</div><!--/row-->
 		</div>
 		<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>

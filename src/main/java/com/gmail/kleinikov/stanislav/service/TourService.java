@@ -8,7 +8,7 @@ public interface TourService {
 
 	List<Tour> fetchAll();
 
-	List<Tour> fetchAllByCountry();
+	List<Tour> fetchAllByCountry(String country);
 
 	List<Tour> fetchHot();
 

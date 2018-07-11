@@ -28,8 +28,9 @@ public class TourDaoImpl implements TourDao {
 
 	@Override
 	public Tour fetchTour(long id) {
-		// TODO Auto-generated method stub
-		return new Tour();
+		Session session = sessionFactory.getCurrentSession();
+		Tour tour = session.get(Tour.class, id);
+		return tour;
 	}
 
 	public List<Hotel> getHotels() {

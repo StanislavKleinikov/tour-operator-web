@@ -21,18 +21,8 @@
     
        			</div><!--/.col-xs-12.col-sm-9-->
 
-		        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-		        	<div class="list-group">
-		        		<a class="list-group-item active"></a>
-		            	<a href="promotion/list" class="list-group-item">Акции</a>
-			            <a class="list-group-item active">Новости</a>
-			            <a href="tours/list" class="list-group-item">Туры</a> 
-			            <a href="services" class="list-group-item">Услуги</a>
-			            <a href="contact" class="list-group-item">Контакты</a>
-			            <a href="info" class="list-group-item">О компании</a>
-		        	</div>
-				</div><!--/.sidebar-offcanvas-->
-				
+		       <jsp:include page="/WEB-INF/view/navigator.jsp"></jsp:include>
+		       <jsp:include page="/WEB-INF/view/searchtourpanel.jsp"></jsp:include>				
 			</div><!--/row-->
 		</div>
 		<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
