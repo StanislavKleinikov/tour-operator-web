@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 	<head>
-    	<spring:url value="/tour" var="pageurl" />
+    	<spring:url value="/tour/search/list" var="pageurl" />
     	<spring:url value="/resources" var="resources" />
     	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>	
     </head>
@@ -34,7 +34,7 @@
 				    <span style="float:left;">
 				    <c:choose>
 				        <c:when test="${pageHolder.firstPage}">Prev</c:when>
-				        <c:otherwise><a href="${pageurl}/${country}/list/prev">Prev</a></c:otherwise>
+				        <c:otherwise><a href="prev">Prev</a></c:otherwise>
 				    </c:choose>
 				    </span>
 				    <span>
@@ -42,7 +42,7 @@
 				    &nbsp;&nbsp;
 				    <c:choose>
 				        <c:when test="${loop.index == pageHolder.page}">${loop.index+1}</c:when>
-				        <c:otherwise><a href="${pageurl}/${country}/${loop.index}">${loop.index+1}</a></c:otherwise>
+				        <c:otherwise><a href="${loop.index}">${loop.index+1}</a></c:otherwise>
 				    </c:choose>
 				    &nbsp;&nbsp;
 				    </c:forEach>
@@ -50,7 +50,7 @@
 				    <span>
 				    <c:choose>
 				        <c:when test="${pageHolder.lastPage}">Next</c:when>
-				        <c:otherwise><a href="${pageurl}/${country}/list/next">Next</a></c:otherwise>
+				        <c:otherwise><a href="next">Next</a></c:otherwise>
 				    </c:choose>
 				    </span>
 				    </div>
@@ -60,8 +60,7 @@
     
        			</div><!--/.col-xs-12.col-sm-9-->
 
-		       <jsp:include page="/WEB-INF/view/navigator.jsp"></jsp:include>
-		       <jsp:include page="/WEB-INF/view/searchtourpanel.jsp"></jsp:include>				
+		       <jsp:include page="/WEB-INF/view/navigator.jsp"></jsp:include>			
 			</div><!--/row-->
 		</div>
 		<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>

@@ -1,5 +1,7 @@
 package com.gmail.kleinikov.stanislav.controller;
 
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_ABOUT;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_CONTACT;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_HOME;
 
 import java.util.List;
@@ -36,4 +38,15 @@ public class MainController {
 		return PAGE_HOME;
 	}
 
+	@RequestMapping("/info/contact")
+	public String contact(Model model) {
+
+		return PAGE_CONTACT;
+	}
+
+	@RequestMapping("/info/about")
+	public String about(Model model) {
+
+		return PAGE_ABOUT;
+	}
 }

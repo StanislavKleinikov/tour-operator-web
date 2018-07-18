@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "news")
@@ -31,6 +33,7 @@ public class News implements Serializable {
 	@Column(name = "topic")
 	private String topic;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date", insertable = false)
 	private Calendar date;
 
@@ -168,11 +171,10 @@ public class News implements Serializable {
 		return true;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public String toString() {
-		return "News [id=" + id + ", topic=" + topic + ", date=" + date.getTime().toLocaleString() + ", status="
-				+ status + ", pic=" + pic + ", text=" + text + "]";
+		return "News [id=" + id + ", topic=" + topic + ", date=" + date + ", status=" + status + ", pic=" + pic
+				+ ", text=" + text + "]";
 	}
 
 }

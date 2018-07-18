@@ -1,5 +1,30 @@
 package com.gmail.kleinikov.stanislav.entity;
 
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_CATEGORY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_COUNTRY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_DEPARTURE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_ENDDATE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_MAXDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_MINDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_NUTRITION;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_STARTDATE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_SQL_STATEMENT_CATEGORY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_SQL_STATEMENT_COUNTRY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_SQL_STATEMENT_DEPARTURE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_SQL_STATEMENT_ENDDATE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_SQL_STATEMENT_MAXDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_SQL_STATEMENT_MINDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_SQL_STATEMENT_NUTRITION;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_SQL_STATEMENT_STARTDATE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_CATEGORY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_COUNTRY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_DEPARTURE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_ENDDATE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_MAXDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_MINDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_NUTRITION;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_STARTDATE;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -14,6 +39,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.FilterDefs;
+import org.hibernate.annotations.Filters;
+import org.hibernate.annotations.ParamDef;
+
+@FilterDefs({
+		@FilterDef(name = FILTER_TOUR_DEPARTURE, parameters = {
+				@ParamDef(name = FILTER_PARAM_DEPARTURE, type = "java.lang.String") }),
+		@FilterDef(name = FILTER_TOUR_COUNTRY, parameters = {
+				@ParamDef(name = FILTER_PARAM_COUNTRY, type = "java.lang.String") }),
+		@FilterDef(name = FILTER_TOUR_STARTDATE, parameters = {
+				@ParamDef(name = FILTER_PARAM_STARTDATE, type = "java.util.Date") }),
+		@FilterDef(name = FILTER_TOUR_ENDDATE, parameters = {
+				@ParamDef(name = FILTER_PARAM_ENDDATE, type = "java.util.Date") }),
+		@FilterDef(name = FILTER_TOUR_NUTRITION, parameters = {
+				@ParamDef(name = FILTER_PARAM_NUTRITION, type = "java.lang.String") }),
+		@FilterDef(name = FILTER_TOUR_CATEGORY, parameters = {
+				@ParamDef(name = FILTER_PARAM_CATEGORY, type = "java.lang.String") }),
+		@FilterDef(name = FILTER_TOUR_MINDAY, parameters = {
+				@ParamDef(name = FILTER_PARAM_MINDAY, type = "java.lang.Integer") }),
+		@FilterDef(name = FILTER_TOUR_MAXDAY, parameters = {
+				@ParamDef(name = FILTER_PARAM_MAXDAY, type = "java.lang.Integer") }) })
+@Filters({ @Filter(name = FILTER_TOUR_DEPARTURE, condition = FILTER_SQL_STATEMENT_DEPARTURE),
+		@Filter(name = FILTER_TOUR_COUNTRY, condition = FILTER_SQL_STATEMENT_COUNTRY),
+		@Filter(name = FILTER_TOUR_STARTDATE, condition = FILTER_SQL_STATEMENT_STARTDATE),
+		@Filter(name = FILTER_TOUR_ENDDATE, condition = FILTER_SQL_STATEMENT_ENDDATE),
+		@Filter(name = FILTER_TOUR_NUTRITION, condition = FILTER_SQL_STATEMENT_NUTRITION),
+		@Filter(name = FILTER_TOUR_CATEGORY, condition = FILTER_SQL_STATEMENT_CATEGORY),
+		@Filter(name = FILTER_TOUR_MINDAY, condition = FILTER_SQL_STATEMENT_MINDAY),
+		@Filter(name = FILTER_TOUR_MAXDAY, condition = FILTER_SQL_STATEMENT_MAXDAY) })
 
 @Entity
 @Table(name = "tour")

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tour_data")
@@ -31,9 +33,11 @@ public class TourDetail implements Serializable {
 	@JoinColumn(name = "nutrition")
 	private Nutrition nutrition;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
 	private Calendar startDate;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "end_date")
 	private Calendar endDate;
 

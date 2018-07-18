@@ -1,6 +1,7 @@
 package com.gmail.kleinikov.stanislav.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,12 @@ public class TourServiceImpl implements TourService {
 		List<Tour> tours = tourDao.fetchAll();
 		tours = tours.stream().filter(x -> "hot".equalsIgnoreCase(x.getStatus().getName()))
 				.collect(Collectors.toList());
+		return tours;
+	}
+
+	@Override
+	public List<Tour> searchTour(Map<String, String> parameters) {
+		List<Tour> tours = tourDao.searchTour(parameters);
 		return tours;
 	}
 

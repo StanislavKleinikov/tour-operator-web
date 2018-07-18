@@ -1,9 +1,11 @@
 package com.gmail.kleinikov.stanislav.controller;
 
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_LIST_TOUR;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_SEARCH_RESULT;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_TOUR;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.TOUR_PER_PAGE;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,13 +23,14 @@ import com.gmail.kleinikov.stanislav.entity.Tour;
 import com.gmail.kleinikov.stanislav.service.TourService;
 
 @Controller
+@RequestMapping("/tour")
 public class TourController {
 
 	@Autowired
 	private TourService tourService;
 
 	@GetMapping
-	@RequestMapping("/tour/{id}")
+	@RequestMapping("{id}")
 	public String fetchTour(@PathVariable("id") long id, Model model) {
 		Tour tour = tourService.fetchTour(id);
 		model.addAttribute("tour", tour);
@@ -35,7 +38,37 @@ public class TourController {
 	}
 
 	@GetMapping
-	@RequestMapping(value = { "/{country}/{type}", "/{country}" })
+	@RequestMapping({ "/search/list", "search/list/{type}" })
+	public String searchTour(HttpServletRequest req, Model model, @PathVariable String type) {
+		Map<String, String[]> requestParameters = req.getParameterMap();
+		Map<String, String> parameters = new HashMap<>();
+		PagedListHolder<Tour> tourHolder = null;
+		if (null == type) {
+			requestParameters.forEach((x, y) -> parameters.put(x, y[1]));
+			List<Tour> tours = tourService.searchTour(parameters);
+			tourHolder = new PagedListHolder<Tour>();
+			tourHolder.setSource(tours);
+			tourHolder.setPageSize(TOUR_PER_PAGE);
+			model.addAttribute("tourHolder", tourHolder);
+
+		} else if ("next".equals(type)) {
+			tourHolder = (PagedListHolder<Tour>) model.asMap().get("tourHolder");
+			tourHolder.nextPage();
+
+		} else if ("prev".equals(type)) {
+			tourHolder = (PagedListHolder<Tour>) model.asMap().get("tourHolder");
+			tourHolder.previousPage();
+
+		} else {
+			tourHolder = (PagedListHolder<Tour>) model.asMap().get("tourHolder");
+			int pageNum = Integer.parseInt(type);
+			tourHolder.setPage(pageNum);
+		}
+		return PAGE_SEARCH_RESULT;
+	}
+
+	@GetMapping
+	@RequestMapping(value = { "/{country}/list/{type}", "{country}/list" })
 	public String fetchTours(@PathVariable Map<String, String> pathVariablesMap, HttpServletRequest req) {
 		PagedListHolder<Tour> tourHolder = null;
 
@@ -51,27 +84,17 @@ public class TourController {
 			tourHolder.setPageSize(TOUR_PER_PAGE);
 
 			req.getSession().setAttribute("tourHolder", tourHolder);
-
+			req.getSession().setAttribute("country", country);
 		} else if ("next".equals(type)) {
-
 			tourHolder = (PagedListHolder<Tour>) req.getSession().getAttribute("tourHolder");
-
 			tourHolder.nextPage();
-
 		} else if ("prev".equals(type)) {
-
 			tourHolder = (PagedListHolder<Tour>) req.getSession().getAttribute("tourHolder");
-
 			tourHolder.previousPage();
-
 		} else {
-
 			tourHolder = (PagedListHolder<Tour>) req.getSession().getAttribute("tourHolder");
-
 			int pageNum = Integer.parseInt(type);
-
 			tourHolder.setPage(pageNum);
-
 		}
 		return PAGE_LIST_TOUR;
 	}
