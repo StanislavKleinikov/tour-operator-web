@@ -13,4 +13,10 @@ public interface TourDao {
 
 	List<Tour> searchTour(Map<String, String> parameters);
 
+	Tour createTour(Tour tour);
+
+	Tour deleteTour(long id);
+
+	Tour updateTour(long id);
+
 }

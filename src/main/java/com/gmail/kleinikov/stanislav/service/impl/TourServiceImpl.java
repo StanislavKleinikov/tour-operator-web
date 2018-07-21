@@ -50,9 +50,28 @@ public class TourServiceImpl implements TourService {
 	}
 
 	@Override
+	@Transactional
 	public List<Tour> searchTour(Map<String, String> parameters) {
 		List<Tour> tours = tourDao.searchTour(parameters);
 		return tours;
+	}
+
+	@Override
+	public Tour createTour(Tour tour) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tour deleteTour(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tour updateTour(long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

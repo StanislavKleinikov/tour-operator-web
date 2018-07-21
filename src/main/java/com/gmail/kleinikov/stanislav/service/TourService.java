@@ -17,4 +17,10 @@ public interface TourService {
 
 	Tour fetchTour(long id);
 
+	Tour createTour(Tour tour);
+
+	Tour deleteTour(long id);
+
+	Tour updateTour(long id);
+
 }

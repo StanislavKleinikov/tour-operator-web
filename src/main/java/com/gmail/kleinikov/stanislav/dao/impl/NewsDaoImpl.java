@@ -1,5 +1,7 @@
 package com.gmail.kleinikov.stanislav.dao.impl;
 
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.STATUS_DELETED;
+
 import java.util.List;
 
 import org.hibernate.Session;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gmail.kleinikov.stanislav.dao.NewsDao;
 import com.gmail.kleinikov.stanislav.entity.News;
+import com.gmail.kleinikov.stanislav.entity.Status;
 
 @Repository
 public class NewsDaoImpl implements NewsDao {
@@ -19,22 +22,10 @@ public class NewsDaoImpl implements NewsDao {
 
 	@Override
 	public List<News> getNews() {
-
-		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-
-		// create a query
 		Query<News> query = currentSession.createQuery("from News", News.class);
-
-		// execute query and get result list
 		List<News> news = query.getResultList();
 		return news;
-	}
-
-	@Override
-	public News createNews(News news) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -42,6 +33,29 @@ public class NewsDaoImpl implements NewsDao {
 		Session currentSession = sessionFactory.getCurrentSession();
 		News news = currentSession.get(News.class, id);
 		return news;
+	}
+
+	@Override
+	public News createNews(News news) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Long id = (Long) currentSession.save(news);
+		return currentSession.get(News.class, id);
+	}
+
+	@Override
+	public News deleteNews(long id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		News news = currentSession.get(News.class, id);
+		Status status = currentSession.get(Status.class, STATUS_DELETED);
+		news.setStatus(status);
+		currentSession.update(news);
+		return currentSession.get(News.class, id);
+	}
+
+	@Override
+	public void updateNews(News news) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.update(news);
 	}
 
 }

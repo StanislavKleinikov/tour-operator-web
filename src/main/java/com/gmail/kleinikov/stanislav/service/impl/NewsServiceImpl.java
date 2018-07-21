@@ -17,7 +17,7 @@ public class NewsServiceImpl implements NewsService {
 	@Autowired
 	private NewsDao newsDao;
 
-	public List<News> actualNewsList() {
+	private List<News> actualNewsList() {
 		List<News> news = newsDao.getNews();
 		news = news.stream().filter(x -> "active".equalsIgnoreCase(x.getStatus().getName()))
 				.sorted((x1, x2) -> x2.getDate().compareTo(x1.getDate())).collect(Collectors.toList());
@@ -33,9 +33,15 @@ public class NewsServiceImpl implements NewsService {
 
 	@Override
 	@Transactional
-	public News createNews(News news) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<News> getAllNews() {
+		List<News> news = newsDao.getNews();
+		return news;
+	}
+
+	@Override
+	@Transactional
+	public void createNews(News news) {
+		newsDao.createNews(news);
 	}
 
 	@Override
@@ -45,4 +51,15 @@ public class NewsServiceImpl implements NewsService {
 		return news;
 	}
 
+	@Override
+	@Transactional
+	public void updateNews(News news) {
+		newsDao.updateNews(news);
+	}
+
+	@Override
+	@Transactional
+	public void deleteNews(long id) {
+		newsDao.deleteNews(id);
+	}
 }

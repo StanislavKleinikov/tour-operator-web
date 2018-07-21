@@ -8,7 +8,13 @@ public interface NewsService {
 
 	List<News> getNews();
 
-	News createNews(News news);
+	List<News> getAllNews();
+
+	void createNews(News news);
+
+	void updateNews(News news);
+
+	void deleteNews(long id);
 
 	News getNews(long id);
 

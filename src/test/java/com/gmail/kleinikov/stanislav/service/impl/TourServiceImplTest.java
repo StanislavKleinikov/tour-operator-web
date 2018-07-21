@@ -1,4 +1,4 @@
-package com.gmail.kleinikov.stanislav.dao.impl;
+package com.gmail.kleinikov.stanislav.service.impl;
 
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_CATEGORY;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_COUNTRY;
@@ -8,7 +8,6 @@ import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_MAXD
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_MINDAY;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_NUTRITION;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_STARTDATE;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.HashMap;
@@ -23,34 +22,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gmail.kleinikov.stanislav.entity.Hotel;
 import com.gmail.kleinikov.stanislav.entity.Tour;
+import com.gmail.kleinikov.stanislav.service.TourService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/applicationContext.xml" })
 @WebAppConfiguration
 @Transactional
-public class TourDaoImplTest {
+public class TourServiceImplTest {
 
 	@Autowired
-	private TourDaoImpl tourDao;
-
-	@Test
-	public void testFetchAll() {
-		List<Tour> tours = tourDao.fetchAll();
-		assertFalse(tours.isEmpty());
-	}
-
-	@Test
-	public void testFetchTour() {
-		// TODO test
-	}
-
-	@Test
-	public void testGetHotels() {
-		List<Hotel> hotels = tourDao.getHotels();
-		assertNotNull(hotels);
-	}
+	private TourService tourService;
 
 	@Test
 	public void testSearchTour() {
@@ -64,7 +46,7 @@ public class TourDaoImplTest {
 		parameters.put(FILTER_PARAM_MINDAY, "7");
 		parameters.put(FILTER_PARAM_MAXDAY, "10");
 
-		List<Tour> tours = tourDao.searchTour(parameters);
+		List<Tour> tours = tourService.searchTour(parameters);
 		assertNotNull(tours);
 	}
 }

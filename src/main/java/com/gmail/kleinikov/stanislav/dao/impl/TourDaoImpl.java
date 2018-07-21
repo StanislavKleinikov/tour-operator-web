@@ -1,5 +1,22 @@
 package com.gmail.kleinikov.stanislav.dao.impl;
 
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_CATEGORY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_COUNTRY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_DEPARTURE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_ENDDATE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_MAXDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_MINDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_NUTRITION;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_PARAM_STARTDATE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_CATEGORY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_COUNTRY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_DEPARTURE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_ENDDATE;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_MAXDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_MINDAY;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_NUTRITION;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.FILTER_TOUR_STARTDATE;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,57 +81,75 @@ public class TourDaoImpl implements TourDao {
 
 	private Set<Filter> enableFilters(Map<String, String> parameters, Session session) {
 		Set<Filter> filters = new HashSet<>();
-		if (parameters.containsKey("departure_country")) {
-			Filter departureCountryFilter = session.enableFilter("departureCountryFilter");
-			departureCountryFilter.setParameter("departureCountryParam", parameters.get("departure_country"));
+		if (parameters.containsKey(FILTER_PARAM_DEPARTURE)) {
+			Filter departureCountryFilter = session.enableFilter(FILTER_TOUR_DEPARTURE);
+			departureCountryFilter.setParameter(FILTER_PARAM_DEPARTURE, parameters.get(FILTER_PARAM_DEPARTURE));
 		}
-		if (parameters.containsKey("destination_country")) {
-			Filter destinationCountryFilter = session.enableFilter("destinationCountryFilter");
-			destinationCountryFilter.setParameter("destinationCountryParam", parameters.get("destination_country"));
+		if (parameters.containsKey(FILTER_PARAM_COUNTRY)) {
+			Filter destinationCountryFilter = session.enableFilter(FILTER_TOUR_COUNTRY);
+			destinationCountryFilter.setParameter(FILTER_PARAM_COUNTRY, parameters.get(FILTER_PARAM_COUNTRY));
 		}
-		if (parameters.containsKey("start_date")) {
-			Filter startDateFilter = session.enableFilter("startDateFilter");
+		if (parameters.containsKey(FILTER_PARAM_STARTDATE)) {
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = null;
 			try {
-				date = format.parse(parameters.get("start_date"));
+				date = format.parse(parameters.get(FILTER_PARAM_STARTDATE));
+				Filter startDateFilter = session.enableFilter(FILTER_TOUR_STARTDATE);
+				startDateFilter.setParameter(FILTER_PARAM_STARTDATE, date);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			startDateFilter.setParameter("startDateParam", date);
 		}
-		if (parameters.containsKey("end_date")) {
-			Filter endDateFilter = session.enableFilter("endDateFilter");
+		if (parameters.containsKey(FILTER_PARAM_ENDDATE)) {
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = null;
 			try {
-				date = format.parse(parameters.get("end_date"));
+				date = format.parse(parameters.get(FILTER_PARAM_ENDDATE));
+				Filter endDateFilter = session.enableFilter(FILTER_TOUR_ENDDATE);
+				endDateFilter.setParameter(FILTER_PARAM_ENDDATE, date);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			endDateFilter.setParameter("endDateParam", date);
 		}
-		if (parameters.containsKey("nutrition")) {
-			Filter nutritionFilter = session.enableFilter("nutritionFilter");
-			nutritionFilter.setParameter("nutritionParam", parameters.get("nutrition"));
+		if (parameters.containsKey(FILTER_PARAM_NUTRITION)) {
+			Filter nutritionFilter = session.enableFilter(FILTER_TOUR_NUTRITION);
+			nutritionFilter.setParameter(FILTER_PARAM_NUTRITION, parameters.get(FILTER_PARAM_NUTRITION));
 		}
-		if (parameters.containsKey("category")) {
-			Filter categoryFilter = session.enableFilter("categoryFilter");
-			categoryFilter.setParameter("categoryParam", parameters.get("category"));
+		if (parameters.containsKey(FILTER_PARAM_CATEGORY)) {
+			Filter categoryFilter = session.enableFilter(FILTER_TOUR_CATEGORY);
+			categoryFilter.setParameter(FILTER_PARAM_CATEGORY, parameters.get(FILTER_PARAM_CATEGORY));
 		}
-		if (parameters.containsKey("minday")) {
-			Filter mindayFilter = session.enableFilter("mindayFilter");
-			mindayFilter.setParameter("mindayParam", Integer.parseInt(parameters.get("minday")));
+		if (parameters.containsKey(FILTER_PARAM_MINDAY)) {
+			Filter mindayFilter = session.enableFilter(FILTER_TOUR_MINDAY);
+			mindayFilter.setParameter(FILTER_PARAM_MINDAY, Integer.parseInt(parameters.get(FILTER_PARAM_MINDAY)));
 		}
-		if (parameters.containsKey("maxday")) {
-			Filter maxdayFilter = session.enableFilter("maxdayFilter");
-			maxdayFilter.setParameter("maxdayParam", Integer.parseInt(parameters.get("maxday")));
+		if (parameters.containsKey(FILTER_PARAM_MAXDAY)) {
+			Filter maxdayFilter = session.enableFilter(FILTER_TOUR_MAXDAY);
+			maxdayFilter.setParameter(FILTER_PARAM_MAXDAY, Integer.parseInt(parameters.get(FILTER_PARAM_MAXDAY)));
 		}
 		return filters;
 	}
 
 	private void disableFilters(Set<Filter> filters, Session session) {
 		filters.forEach(x -> session.disableFilter(x.getName()));
+	}
+
+	@Override
+	public Tour createTour(Tour tour) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tour deleteTour(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tour updateTour(long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

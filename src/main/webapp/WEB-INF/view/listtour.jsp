@@ -21,9 +21,9 @@
 				        <c:set var="pageHolder" value="${tourHolder}" scope="session" />
 				        <div class="row page" id="tours">          			
 	          			<c:forEach var="tour"  items="${pageHolder.pageList}">
-	          				<div class="col-xs-12 col-md-6 col-lg-4 post">
+	          				<div class="col-xs-12 col-md-6 col-lg-6 post">
 	          					<a href="tour/${tour.id}">	          					
-		          					<img alt="img" class="img-thumbnail img-responsive img-wrap" src="resources/img/hotels/${tour.hotel.hotelDetail.getPic()}/1.jpg" width="100%" height="200">
+		          					<img alt="img" class="img-thumbnail img-responsive img-wrap" src="resources/img/resort/${tour.resort.resortDetail.getPic()}" height="300px" width="100%">
 		              				<h2>${tour.hotel.getName()}</h2>		              					            			
 	            				</a>
 	            			</div><!--/.col-xs-12.col-lg-12-->	          			

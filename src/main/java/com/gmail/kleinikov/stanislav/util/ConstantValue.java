@@ -17,6 +17,10 @@ public class ConstantValue {
 	public static final String PAGE_ABOUT = "about";
 	public static final String PAGE_CONTACT = "contact";
 	public static final String PAGE_SEARCH_RESULT = "searchresult";
+	public static final String PAGE_ADMIN = "admin";
+	public static final String PAGE_EDIT_NEWS = "editNews";
+	public static final String PAGE_EDIT_USERS = "editUsers";
+	public static final String PAGE_EDIT_TOURS = "editTours";
 
 	public static final long ROLE_ADMIN = 1;
 	public static final long ROLE_MANAGER = 2;

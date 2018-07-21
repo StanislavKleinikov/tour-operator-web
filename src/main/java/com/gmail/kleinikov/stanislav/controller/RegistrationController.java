@@ -1,5 +1,6 @@
 package com.gmail.kleinikov.stanislav.controller;
 
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_ADMIN;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_HOME;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_NO_SUCH_USER;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_REGISTRATION;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,4 +60,9 @@ public class RegistrationController {
 		return "redirect:/" + PAGE_HOME;
 	}
 
+	@RequestMapping("/admin")
+	@GetMapping
+	public String admin() {
+		return PAGE_ADMIN;
+	}
 }

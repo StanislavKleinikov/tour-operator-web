@@ -5,9 +5,11 @@ import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_SEARCH_RESUL
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_TOUR;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.TOUR_PER_PAGE;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,7 +32,7 @@ public class TourController {
 	private TourService tourService;
 
 	@GetMapping
-	@RequestMapping("{id}")
+	@RequestMapping("/{id}")
 	public String fetchTour(@PathVariable("id") long id, Model model) {
 		Tour tour = tourService.fetchTour(id);
 		model.addAttribute("tour", tour);
@@ -38,29 +40,39 @@ public class TourController {
 	}
 
 	@GetMapping
-	@RequestMapping({ "/search/list", "search/list/{type}" })
-	public String searchTour(HttpServletRequest req, Model model, @PathVariable String type) {
+	@RequestMapping(value = { "/search/list/{type}", "/search/list" })
+	public String searchTour(@PathVariable Map<String, String> pathVariablesMap, HttpServletRequest req) {
+		try {
+			req.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		Map<String, String[]> requestParameters = req.getParameterMap();
 		Map<String, String> parameters = new HashMap<>();
+		String type = pathVariablesMap.get("type");
 		PagedListHolder<Tour> tourHolder = null;
 		if (null == type) {
-			requestParameters.forEach((x, y) -> parameters.put(x, y[1]));
+			requestParameters.forEach((x, y) -> parameters.put(x, y[0]));
+
+			parameters.values().removeIf(Objects::isNull);
+			parameters.values().removeIf(x -> x.equals(""));
+
 			List<Tour> tours = tourService.searchTour(parameters);
 			tourHolder = new PagedListHolder<Tour>();
 			tourHolder.setSource(tours);
 			tourHolder.setPageSize(TOUR_PER_PAGE);
-			model.addAttribute("tourHolder", tourHolder);
+			req.getSession().setAttribute("searchTourHolder", tourHolder);
 
 		} else if ("next".equals(type)) {
-			tourHolder = (PagedListHolder<Tour>) model.asMap().get("tourHolder");
+			tourHolder = (PagedListHolder<Tour>) req.getSession().getAttribute("searchTourHolder");
 			tourHolder.nextPage();
 
 		} else if ("prev".equals(type)) {
-			tourHolder = (PagedListHolder<Tour>) model.asMap().get("tourHolder");
+			tourHolder = (PagedListHolder<Tour>) req.getSession().getAttribute("searchTourHolder");
 			tourHolder.previousPage();
 
 		} else {
-			tourHolder = (PagedListHolder<Tour>) model.asMap().get("tourHolder");
+			tourHolder = (PagedListHolder<Tour>) req.getSession().getAttribute("searchTourHolder");
 			int pageNum = Integer.parseInt(type);
 			tourHolder.setPage(pageNum);
 		}
@@ -68,7 +80,7 @@ public class TourController {
 	}
 
 	@GetMapping
-	@RequestMapping(value = { "/{country}/list/{type}", "{country}/list" })
+	@RequestMapping(value = { "/{country}/list/{type}", "/{country}/list" })
 	public String fetchTours(@PathVariable Map<String, String> pathVariablesMap, HttpServletRequest req) {
 		PagedListHolder<Tour> tourHolder = null;
 

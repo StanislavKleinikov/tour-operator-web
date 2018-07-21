@@ -16,7 +16,9 @@
           				
           			
           		<h2>${tour.toString()}</h2>	
-          			
+          		<c:forEach items="${tour.hotel.hotelDetail.pic}">
+          		
+          		</c:forEach>
     
     
        			</div><!--/.col-xs-12.col-sm-9-->
