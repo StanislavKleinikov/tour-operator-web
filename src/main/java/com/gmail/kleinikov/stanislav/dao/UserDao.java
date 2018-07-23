@@ -1,10 +1,14 @@
 package com.gmail.kleinikov.stanislav.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 import com.gmail.kleinikov.stanislav.entity.User;
 
-public interface UserDao extends JpaRepository<User, Long> {
+public interface UserDao {
 	User findByUsername(String username);
+
+	List<User> findAll();
+
+	void save(User user);
 
 }

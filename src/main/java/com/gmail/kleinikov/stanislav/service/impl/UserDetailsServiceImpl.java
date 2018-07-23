@@ -12,9 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gmail.kleinikov.stanislav.dao.UserDao;
 import com.gmail.kleinikov.stanislav.entity.Role;
 import com.gmail.kleinikov.stanislav.entity.User;
+import com.gmail.kleinikov.stanislav.service.UserService;
 
 /**
  * Implementation of
@@ -29,12 +29,12 @@ import com.gmail.kleinikov.stanislav.entity.User;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private UserDao userDao;
+	private UserService userService;
 
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.findByUsername(username);
+		User user = userService.findByUsername(username);
 
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 

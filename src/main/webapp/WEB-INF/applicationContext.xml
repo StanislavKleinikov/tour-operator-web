@@ -75,28 +75,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
-   <!--  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="myDataSource"/>
-        <property name="packagesToScan" value="com.gmail.kleinikov.stanislav.entity"/>
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
-        </property>
-        <property name="jpaProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-            </props>
-        </property>
-    </bean> -->
-
-   <!--  <bean id="transactionManager"
-          class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>  -->
     <!-- Enable configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
-	
-	<!-- <jpa:repositories base-package="com.gmail.kleinikov.stanislav.dao"/> -->
 
 </beans>
 
