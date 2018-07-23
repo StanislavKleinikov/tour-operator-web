@@ -23,7 +23,7 @@ public class TourDetail implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "departure")
@@ -45,7 +45,7 @@ public class TourDetail implements Serializable {
 		return id;
 	}
 
-	public void setTourId(long id) {
+	public void setTourId(Long id) {
 		this.id = id;
 	}
 
@@ -87,9 +87,9 @@ public class TourDetail implements Serializable {
 		int result = 1;
 		result = prime * result + ((departure == null) ? 0 : departure.hashCode());
 		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nutrition == null) ? 0 : nutrition.hashCode());
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -112,6 +112,11 @@ public class TourDetail implements Serializable {
 				return false;
 		} else if (!endDate.equals(other.endDate))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (nutrition == null) {
 			if (other.nutrition != null)
 				return false;
@@ -121,8 +126,6 @@ public class TourDetail implements Serializable {
 			if (other.startDate != null)
 				return false;
 		} else if (!startDate.equals(other.startDate))
-			return false;
-		if (id != other.id)
 			return false;
 		return true;
 	}

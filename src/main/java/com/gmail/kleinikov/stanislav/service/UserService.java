@@ -1,15 +1,21 @@
 package com.gmail.kleinikov.stanislav.service;
 
+import java.util.List;
+
 import com.gmail.kleinikov.stanislav.entity.User;
-import com.gmail.kleinikov.stanislav.exception.ServiceNoSuchUserException;
+
+/**
+ * Service class for {@link com.gmail.kleinikov.stanislav.entity.User}
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 
 public interface UserService {
 
-	User authorise(String login, String password) throws ServiceNoSuchUserException;
+	void save(User user);
 
-	boolean logOut();
-	
-	User getUser(long id) throws ServiceNoSuchUserException;
-	
-	void saveUser(User user);
+	User findByUsername(String username);
+
+	List<User> fetchAll();
 }

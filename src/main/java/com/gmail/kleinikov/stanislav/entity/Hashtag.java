@@ -13,27 +13,27 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="hashtag")
-public class Hashtag implements Serializable{
-	 
+@Table(name = "hashtag")
+public class Hashtag implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
-	
+	private Long id;
+
 	@Column(name = "hashtag_name")
 	private String name;
-	
+
 	@ManyToMany(mappedBy = "tags")
-    private Set<News> news = new HashSet<>();
+	private Set<News> news = new HashSet<>();
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -57,7 +57,7 @@ public class Hashtag implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -71,7 +71,10 @@ public class Hashtag implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Hashtag other = (Hashtag) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -86,5 +89,4 @@ public class Hashtag implements Serializable{
 		return "Hashtag [id=" + id + ", name=" + name + "]";
 	}
 
-	
 }

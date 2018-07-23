@@ -53,8 +53,8 @@ public class NewsServiceImpl implements NewsService {
 
 	@Override
 	@Transactional
-	public void updateNews(News news) {
-		newsDao.updateNews(news);
+	public void saveNews(News news) {
+		newsDao.saveNews(news);
 	}
 
 	@Override

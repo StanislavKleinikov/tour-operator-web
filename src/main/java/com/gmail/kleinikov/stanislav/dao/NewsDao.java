@@ -12,7 +12,7 @@ public interface NewsDao {
 
 	News getNewsById(long id);
 
-	News deleteNews(long id);
+	void deleteNews(long id);
 
-	void updateNews(News news);
+	void saveNews(News news);
 }

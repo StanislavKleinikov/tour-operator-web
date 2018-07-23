@@ -28,13 +28,13 @@ public class News implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
 	@Column(name = "topic")
 	private String topic;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date", insertable = false)
+	@Column(name = "date", insertable = false, updatable = false, nullable = true)
 	private Calendar date;
 
 	@ManyToOne
@@ -55,7 +55,7 @@ public class News implements Serializable {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -124,7 +124,7 @@ public class News implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((pic == null) ? 0 : pic.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
@@ -146,7 +146,10 @@ public class News implements Serializable {
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (pic == null) {
 			if (other.pic != null)

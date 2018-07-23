@@ -26,7 +26,8 @@ import com.gmail.kleinikov.stanislav.entity.Tour;
 import com.gmail.kleinikov.stanislav.service.TourService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/applicationContext.xml" })
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/applicationContext.xml",
+		"file:src/main/webapp/WEB-INF/appconfig-security.xml" })
 @WebAppConfiguration
 @Transactional
 public class TourServiceImplTest {

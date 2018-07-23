@@ -141,9 +141,11 @@ public class TourDaoImpl implements TourDao {
 	}
 
 	@Override
-	public Tour deleteTour(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteTour(long id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("delete from Tour where id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 
 	@Override

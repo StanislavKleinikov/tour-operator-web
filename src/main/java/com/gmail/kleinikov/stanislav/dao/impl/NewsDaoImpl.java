@@ -1,7 +1,5 @@
 package com.gmail.kleinikov.stanislav.dao.impl;
 
-import static com.gmail.kleinikov.stanislav.util.ConstantValue.STATUS_DELETED;
-
 import java.util.List;
 
 import org.hibernate.Session;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.gmail.kleinikov.stanislav.dao.NewsDao;
 import com.gmail.kleinikov.stanislav.entity.News;
-import com.gmail.kleinikov.stanislav.entity.Status;
 
 @Repository
 public class NewsDaoImpl implements NewsDao {
@@ -43,19 +40,17 @@ public class NewsDaoImpl implements NewsDao {
 	}
 
 	@Override
-	public News deleteNews(long id) {
+	public void deleteNews(long id) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		News news = currentSession.get(News.class, id);
-		Status status = currentSession.get(Status.class, STATUS_DELETED);
-		news.setStatus(status);
-		currentSession.update(news);
-		return currentSession.get(News.class, id);
+		Query query = currentSession.createQuery("delete from News where id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 
 	@Override
-	public void updateNews(News news) {
+	public void saveNews(News news) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.update(news);
+		currentSession.saveOrUpdate(news);
 	}
 
 }

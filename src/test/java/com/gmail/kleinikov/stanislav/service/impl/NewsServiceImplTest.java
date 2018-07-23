@@ -1,7 +1,10 @@
 package com.gmail.kleinikov.stanislav.service.impl;
 
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.STATUS_ACTIVE;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +19,8 @@ import com.gmail.kleinikov.stanislav.entity.News;
 import com.gmail.kleinikov.stanislav.entity.Status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/applicationContext.xml" })
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/applicationContext.xml",
+		"file:src/main/webapp/WEB-INF/appconfig-security.xml" })
 @WebAppConfiguration
 @Transactional
 public class NewsServiceImplTest {
@@ -31,7 +35,9 @@ public class NewsServiceImplTest {
 
 	@Test
 	public void testGetAllNews() {
-
+		List<News> news = newsDao.getNews();
+		System.out.println(news);
+		assertNotNull(news);
 	}
 
 	@Test

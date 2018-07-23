@@ -15,7 +15,7 @@ public interface TourDao {
 
 	Tour createTour(Tour tour);
 
-	Tour deleteTour(long id);
+	void deleteTour(long id);
 
 	Tour updateTour(long id);
 

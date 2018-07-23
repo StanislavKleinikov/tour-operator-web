@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gmail.kleinikov.stanislav.entity.News;
 import com.gmail.kleinikov.stanislav.entity.Tour;
@@ -25,7 +26,7 @@ public class MainController {
 	@Autowired
 	private TourService tourService;
 
-	@RequestMapping("/home")
+	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String home(Model model) {
 
 		List<News> news = newsService.getNews();
@@ -40,13 +41,11 @@ public class MainController {
 
 	@RequestMapping("/info/contact")
 	public String contact(Model model) {
-
 		return PAGE_CONTACT;
 	}
 
 	@RequestMapping("/info/about")
 	public String about(Model model) {
-
 		return PAGE_ABOUT;
 	}
 }

@@ -66,6 +66,7 @@
 				<label for="maxdayParam">По</label>
 				<input type="number" min="1" id="maxdayParam" name="maxdayParam" class="form-control"></input>		
 			</div>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<button class="btn btn-success" type="submit">Подобрать</button>	
 		</form>	
 	</div>

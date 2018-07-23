@@ -7,6 +7,7 @@ public class ConstantValue {
 	public static final int TOUR_PER_PAGE = 20;
 
 	public static final String PAGE_HOME = "home";
+	public static final String PAGE_LOGIN = "login";
 	public static final String PAGE_REGISTRATION = "registration";
 	public static final String PAGE_ERROR = "error";
 	public static final String PAGE_NO_SUCH_USER = "noSuchUser";
@@ -18,9 +19,10 @@ public class ConstantValue {
 	public static final String PAGE_CONTACT = "contact";
 	public static final String PAGE_SEARCH_RESULT = "searchresult";
 	public static final String PAGE_ADMIN = "admin";
-	public static final String PAGE_EDIT_NEWS = "editNews";
-	public static final String PAGE_EDIT_USERS = "editUsers";
-	public static final String PAGE_EDIT_TOURS = "editTours";
+	public static final String PAGE_ADMIN_LIST_NEWS = "adminNewsList";
+	public static final String PAGE_ADMIN_LIST_USER = "adminUserList";
+	public static final String PAGE_ADMIN_LIST_TOUR = "adminTourList";
+	public static final String PAGE_ADMIN_FORM_NEWS = "newsForm";
 
 	public static final long ROLE_ADMIN = 1;
 	public static final long ROLE_MANAGER = 2;

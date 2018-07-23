@@ -5,7 +5,6 @@ import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_SEARCH_RESUL
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.PAGE_TOUR;
 import static com.gmail.kleinikov.stanislav.util.ConstantValue.TOUR_PER_PAGE;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,11 +41,6 @@ public class TourController {
 	@GetMapping
 	@RequestMapping(value = { "/search/list/{type}", "/search/list" })
 	public String searchTour(@PathVariable Map<String, String> pathVariablesMap, HttpServletRequest req) {
-		try {
-			req.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 		Map<String, String[]> requestParameters = req.getParameterMap();
 		Map<String, String> parameters = new HashMap<>();
 		String type = pathVariablesMap.get("type");
@@ -56,7 +50,6 @@ public class TourController {
 
 			parameters.values().removeIf(Objects::isNull);
 			parameters.values().removeIf(x -> x.equals(""));
-
 			List<Tour> tours = tourService.searchTour(parameters);
 			tourHolder = new PagedListHolder<Tour>();
 			tourHolder.setSource(tours);

@@ -23,7 +23,7 @@ public class Resort implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
 	@Column(name = "name")
 	private String name;
@@ -44,7 +44,7 @@ public class Resort implements Serializable {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -85,7 +85,7 @@ public class Resort implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((resortDetail == null) ? 0 : resortDetail.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -106,7 +106,10 @@ public class Resort implements Serializable {
 				return false;
 		} else if (!country.equals(other.country))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (name == null) {
 			if (other.name != null)

@@ -1,20 +1,25 @@
 package com.gmail.kleinikov.stanislav.service.impl;
 
-import static com.gmail.kleinikov.stanislav.util.ConstantValue.ROLE_USER;
-import static com.gmail.kleinikov.stanislav.util.ConstantValue.STATUS_ACTIVE;
-
-import javax.persistence.NoResultException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.gmail.kleinikov.stanislav.dao.RoleDao;
 import com.gmail.kleinikov.stanislav.dao.UserDao;
 import com.gmail.kleinikov.stanislav.entity.Role;
-import com.gmail.kleinikov.stanislav.entity.Status;
 import com.gmail.kleinikov.stanislav.entity.User;
-import com.gmail.kleinikov.stanislav.exception.ServiceNoSuchUserException;
 import com.gmail.kleinikov.stanislav.service.UserService;
+
+/**
+ * Implementation of {@link UserService} interface.
+ *
+ * @author Kleinikov Stanislav
+ * @version 1.0
+ */
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,41 +27,30 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 
+	@Autowired
+	private RoleDao roleDao;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	@Override
-	@Transactional
-	public User authorise(String login, String password) throws ServiceNoSuchUserException {
-		User user = null;
-		try {
-			user = userDao.fetchByCredentials(login, password);
-		} catch (NoResultException e) {
-			throw new ServiceNoSuchUserException(e);
-		}
-		return user;
+	public void save(User user) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		Set<Role> roles = new HashSet<>();
+		roles.add(roleDao.getOne(1L));
+		user.setRoles(roles);
+		userDao.save(user);
 	}
 
 	@Override
-	@Transactional
-	public boolean logOut() {
-		// TODO Auto-generated method stub
-		return false;
+	public User findByUsername(String username) {
+		return userDao.findByUsername(username);
 	}
 
 	@Override
-	public User getUser(long id) throws ServiceNoSuchUserException {
-		User user = userDao.getUser(id);
-		if (user == null) {
-			throw new ServiceNoSuchUserException();
-		}
-		return user;
-	}
-
-	@Override
-	@Transactional
-	public void saveUser(User user) {
-		user.setRole(new Role(ROLE_USER));
-		user.setStatus(new Status(STATUS_ACTIVE));
-		userDao.saveUser(user);
-
+	public List<User> fetchAll() {
+		List<User> users = userDao.findAll();
+		return users;
 	}
 
 }

@@ -1,70 +1,63 @@
 package com.gmail.kleinikov.stanislav.entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+/**
+ * Simple JavaBean domain object that represents a User.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-	@Column(name = "login")
-	private String login;
+	@Column(name = "username")
+	private String username;
 
 	@Column(name = "password")
 	private String password;
 
-	@ManyToOne
-	@JoinColumn(name = "status")
-	private Status status;
+	@Transient
+	private String confirmPassword;
 
-	@ManyToOne
-	@JoinColumn(name = "role")
-	private Role role;
+	@ManyToMany
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 
-	@Column(name = "last_login_date", insertable = false)
-	private Calendar lastLoginDate;
-
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_detail")
-	private UserDetail userDetail;
-
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public Status getStatus() {
-		return status;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -75,45 +68,29 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public String getConfirmPassword() {
+		return confirmPassword;
 	}
 
-	public Role getRole() {
-		return role;
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public Calendar getLastLoginDate() {
-		return lastLoginDate;
-	}
-
-	public void setLastLoginDate(Calendar lastLoginDate) {
-		this.lastLoginDate = lastLoginDate;
-	}
-
-	public UserDetail getUserDetail() {
-		return userDetail;
-	}
-
-	public void setUserDetail(UserDetail userDetail) {
-		this.userDetail = userDetail;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((lastLoginDate == null) ? 0 : lastLoginDate.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((userDetail == null) ? 0 : userDetail.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -126,45 +103,27 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (id != other.id)
-			return false;
-		if (lastLoginDate == null) {
-			if (other.lastLoginDate != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!lastLoginDate.equals(other.lastLoginDate))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
+		} else if (!id.equals(other.id))
 			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role == null) {
-			if (other.role != null)
+		if (username == null) {
+			if (other.username != null)
 				return false;
-		} else if (!role.equals(other.role))
-			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
-			return false;
-		if (userDetail == null) {
-			if (other.userDetail != null)
-				return false;
-		} else if (!userDetail.equals(other.userDetail))
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", status=" + status.getName()
-				+ ", role=" + role.getName() + ", lastLoginDate=" + lastLoginDate + ", userDetail=" + userDetail + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", roles=" + roles + "]";
 	}
 
 }

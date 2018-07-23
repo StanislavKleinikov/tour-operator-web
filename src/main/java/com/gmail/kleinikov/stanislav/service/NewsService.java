@@ -12,7 +12,7 @@ public interface NewsService {
 
 	void createNews(News news);
 
-	void updateNews(News news);
+	void saveNews(News news);
 
 	void deleteNews(long id);
 

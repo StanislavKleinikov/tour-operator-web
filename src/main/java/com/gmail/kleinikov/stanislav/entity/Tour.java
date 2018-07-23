@@ -81,7 +81,7 @@ public class Tour implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "status")
@@ -110,7 +110,7 @@ public class Tour implements Serializable {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -168,7 +168,7 @@ public class Tour implements Serializable {
 		int result = 1;
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((hotel == null) ? 0 : hotel.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
 		result = prime * result + ((resort == null) ? 0 : resort.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -195,7 +195,10 @@ public class Tour implements Serializable {
 				return false;
 		} else if (!hotel.equals(other.hotel))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (price == null) {
 			if (other.price != null)
