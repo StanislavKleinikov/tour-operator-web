@@ -14,6 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code Hotel}.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "hotel")
 public class Hotel implements Serializable {

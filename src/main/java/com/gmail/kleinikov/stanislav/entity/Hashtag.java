@@ -12,6 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code Hashtag}.
+ * 
+ * This class designed to make search among the entities more convenient. The
+ * <strong>name</strong> field contains {@link String} that describe certain
+ * entity;
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "hashtag")
 public class Hashtag implements Serializable {

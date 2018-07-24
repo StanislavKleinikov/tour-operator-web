@@ -9,6 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code Nutrition}. Contains
+ * information about type of food in the {@link Hotel}.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "nutrition")
 public class Nutrition implements Serializable {

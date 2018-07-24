@@ -12,6 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code Category}. Describes
+ * type of {@link Hotel}
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {

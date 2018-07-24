@@ -12,6 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code CountyDetail}.
+ * Contains information about certain {@link Country}.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "country_data")
 public class CountryDetail implements Serializable {

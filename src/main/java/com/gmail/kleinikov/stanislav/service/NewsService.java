@@ -4,6 +4,13 @@ import java.util.List;
 
 import com.gmail.kleinikov.stanislav.entity.News;
 
+/**
+ * Service class for {@link com.gmail.kleinikov.stanislav.entity.News}
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
+
 public interface NewsService {
 
 	List<News> getNews();

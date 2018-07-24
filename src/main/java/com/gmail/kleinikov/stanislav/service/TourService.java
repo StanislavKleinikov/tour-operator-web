@@ -5,6 +5,13 @@ import java.util.Map;
 
 import com.gmail.kleinikov.stanislav.entity.Tour;
 
+/**
+ * Service class for {@link com.gmail.kleinikov.stanislav.entity.Tour}
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
+
 public interface TourService {
 
 	List<Tour> fetchAll();
@@ -17,10 +24,10 @@ public interface TourService {
 
 	Tour fetchTour(long id);
 
-	Tour createTour(Tour tour);
+	void createTour(Tour tour);
 
-	Tour deleteTour(long id);
+	void deleteTour(long id);
 
-	Tour updateTour(long id);
+	void updateTour(long id);
 
 }

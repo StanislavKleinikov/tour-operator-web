@@ -26,6 +26,13 @@ public class SecurityServiceImpl implements SecurityService {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+	/**
+	 * The method designed to access name of a user who has been authenticated.
+	 *
+	 * @return the name of a user.
+	 * @see SecurityContextHolder
+	 * @see UserDetails
+	 */
 	@Override
 	public String findLoggedInUsername() {
 		Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();

@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>	
+	<jsp:include page="/WEB-INF/view/component/header.jsp"></jsp:include>	
 	<link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/admin-page.css"/>" />
 	<title>Admin</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/navbar.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/component/navbar.jsp"></jsp:include>
 	
 	<div class="container">
 		<div class="row">
@@ -85,6 +85,6 @@
 		}
 		
 	</script>
-	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>	
+	<jsp:include page="/WEB-INF/view/component/footer.jsp"></jsp:include>	
 </body>
 </html>

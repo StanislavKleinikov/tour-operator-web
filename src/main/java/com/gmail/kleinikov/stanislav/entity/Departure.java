@@ -9,6 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code Departure}. Describes
+ * the town of departure certain {@link Tour}.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "departure")
 public class Departure implements Serializable {

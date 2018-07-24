@@ -5,10 +5,10 @@
 	<head>
     	<spring:url value="/tour/search/list" var="pageurl" />
     	<spring:url value="/resources" var="resources" />
-    	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>	
+    	<jsp:include page="/WEB-INF/view/component/header.jsp"></jsp:include>	
     </head>
 	<body>
-		<jsp:include page="/WEB-INF/view/navbar.jsp"></jsp:include>	
+		<jsp:include page="/WEB-INF/view/component/navbar.jsp"></jsp:include>	
 		<div class="container">
       		<div class="row row-offcanvas row-offcanvas-right">
        			<div class="col-xs-12 col-sm-9">
@@ -57,10 +57,10 @@
 
        			</div><!--/.col-xs-12.col-sm-9-->
 
-		       <jsp:include page="/WEB-INF/view/navigator.jsp"></jsp:include>
-		       <jsp:include page="/WEB-INF/view/searchtourpanel.jsp"></jsp:include>					
+		       <jsp:include page="/WEB-INF/view/component/navigator.jsp"></jsp:include>
+		       <jsp:include page="/WEB-INF/view/component/searchtourpanel.jsp"></jsp:include>					
 			</div><!--/row-->
 		</div>
-		<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/view/component/footer.jsp"></jsp:include>
 	</body>
 </html>

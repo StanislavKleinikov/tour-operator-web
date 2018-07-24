@@ -13,6 +13,12 @@ import org.springframework.stereotype.Repository;
 import com.gmail.kleinikov.stanislav.dao.UserDao;
 import com.gmail.kleinikov.stanislav.entity.User;
 
+/**
+ * Implementation of {@link UserDao} interface.
+ *
+ * @author Kleinikov Stanislav
+ * @version 1.0
+ */
 @Repository
 public class UserDaoImpl implements UserDao {
 
@@ -44,7 +50,6 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void save(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println(user);
 		session.save(user);
 	}
 

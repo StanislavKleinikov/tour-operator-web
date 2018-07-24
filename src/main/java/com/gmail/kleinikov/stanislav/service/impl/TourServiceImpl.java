@@ -9,9 +9,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gmail.kleinikov.stanislav.dao.TourDao;
+import com.gmail.kleinikov.stanislav.entity.Country;
+import com.gmail.kleinikov.stanislav.entity.Status;
 import com.gmail.kleinikov.stanislav.entity.Tour;
+import com.gmail.kleinikov.stanislav.service.NewsService;
 import com.gmail.kleinikov.stanislav.service.TourService;
 
+/**
+ * Implementation of {@link NewsService} interface.
+ *
+ * @author Kleinikov Stanislav
+ * @version 1.0
+ */
 @Service
 public class TourServiceImpl implements TourService {
 
@@ -31,6 +40,15 @@ public class TourServiceImpl implements TourService {
 		return tourDao.fetchTour(id);
 	}
 
+	/**
+	 * The method designed to filter the List of all {@link Tour} and to return the
+	 * List of {@link Tour} depending on {@link Country}.
+	 *
+	 * @param country
+	 *            - name of Country
+	 * @see Country
+	 * @see Collectors
+	 */
 	@Override
 	@Transactional
 	public List<Tour> fetchAllByCountry(String country) {
@@ -40,6 +58,15 @@ public class TourServiceImpl implements TourService {
 		return list;
 	}
 
+	/**
+	 * The method designed to filter the List of all {@link Tour} and to return the
+	 * List of {@link Tour} which contains only Tours with 'hot' {@link Status}.
+	 *
+	 * @see Status
+	 * @see TourDao
+	 * @see Status
+	 * @see Collectors
+	 */
 	@Override
 	@Transactional
 	public List<Tour> fetchHot() {
@@ -49,6 +76,15 @@ public class TourServiceImpl implements TourService {
 		return tours;
 	}
 
+	/**
+	 * The method invokes searchTour method of {@link TourDao}
+	 *
+	 * @param parameters
+	 *            - Map that contains different parameters as conditions for search
+	 *            {@link Tour}
+	 * @See Map
+	 * @See TourDao
+	 */
 	@Override
 	@Transactional
 	public List<Tour> searchTour(Map<String, String> parameters) {
@@ -57,21 +93,18 @@ public class TourServiceImpl implements TourService {
 	}
 
 	@Override
-	public Tour createTour(Tour tour) {
-		// TODO Auto-generated method stub
-		return null;
+	public void createTour(Tour tour) {
+		tourDao.createTour(tour);
 	}
 
 	@Override
-	public Tour deleteTour(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteTour(long id) {
+		tourDao.deleteTour(id);
 	}
 
 	@Override
-	public Tour updateTour(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateTour(long id) {
+		tourDao.updateTour(id);
 	}
 
 }

@@ -37,6 +37,12 @@ import com.gmail.kleinikov.stanislav.dao.TourDao;
 import com.gmail.kleinikov.stanislav.entity.Hotel;
 import com.gmail.kleinikov.stanislav.entity.Tour;
 
+/**
+ * Implementation of {@link TourDao} interface.
+ *
+ * @author Kleinikov Stanislav
+ * @version 1.0
+ */
 @Repository
 public class TourDaoImpl implements TourDao {
 

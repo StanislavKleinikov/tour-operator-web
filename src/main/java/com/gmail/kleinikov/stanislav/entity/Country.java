@@ -14,6 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code Country}. Describes
+ * the country of destination certain {@link Tour}.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "country")
 public class Country implements Serializable {

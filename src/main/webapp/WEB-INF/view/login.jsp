@@ -8,11 +8,11 @@
 	<title>Login Page</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>	
+	<jsp:include page="/WEB-INF/view/component/header.jsp"></jsp:include>	
 	 <link href='<c:url value="/resources/css/registrationform.css" />' rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/navbar.jsp"></jsp:include>	
+	<jsp:include page="/WEB-INF/view/component/navbar.jsp"></jsp:include>	
 	<div class="container">
       	<div class="row row-offcanvas row-offcanvas-right">
        		<div class="col-xs-12 col-sm-9">
@@ -34,9 +34,9 @@
 				    </form>
 				</div>
 			</div>
-			<jsp:include page="/WEB-INF/view/navigator.jsp"></jsp:include>
+			<jsp:include page="/WEB-INF/view/component/navigator.jsp"></jsp:include>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/component/footer.jsp"></jsp:include>
 </body>
 </html>

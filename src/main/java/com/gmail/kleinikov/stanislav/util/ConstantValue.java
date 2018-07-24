@@ -1,5 +1,11 @@
 package com.gmail.kleinikov.stanislav.util;
 
+/**
+ * The class {@code ConstantValue} contains the all constant of the application
+ * 
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 public class ConstantValue {
 
 	public static final int NEWS_PER_PAGE = 5;
@@ -18,15 +24,14 @@ public class ConstantValue {
 	public static final String PAGE_ABOUT = "about";
 	public static final String PAGE_CONTACT = "contact";
 	public static final String PAGE_SEARCH_RESULT = "searchresult";
-	public static final String PAGE_ADMIN = "admin";
-	public static final String PAGE_ADMIN_LIST_NEWS = "adminNewsList";
-	public static final String PAGE_ADMIN_LIST_USER = "adminUserList";
-	public static final String PAGE_ADMIN_LIST_TOUR = "adminTourList";
-	public static final String PAGE_ADMIN_FORM_NEWS = "newsForm";
+	public static final String PAGE_ADMIN = "admin/admin";
+	public static final String PAGE_ADMIN_LIST_NEWS = "admin/adminNewsList";
+	public static final String PAGE_ADMIN_LIST_TOUR = "admin/adminTourList";
+	public static final String PAGE_ADMIN_LIST_USER = "admin/adminUserList";
+	public static final String PAGE_ADMIN_FORM_NEWS = "admin/newsForm";
 
-	public static final long ROLE_ADMIN = 1;
-	public static final long ROLE_MANAGER = 2;
-	public static final long ROLE_USER = 3;
+	public static final long ROLE_USER = 1;
+	public static final long ROLE_ADMIN = 2;
 
 	public static final long STATUS_ACTIVE = 1;
 	public static final long STATUS_BLOCKED = 2;

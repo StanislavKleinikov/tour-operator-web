@@ -46,6 +46,17 @@ import org.hibernate.annotations.FilterDefs;
 import org.hibernate.annotations.Filters;
 import org.hibernate.annotations.ParamDef;
 
+import com.gmail.kleinikov.stanislav.service.TourService;
+
+/**
+ * Simple JavaBean domain object that represents a {@code Tour}. Contains
+ * Hibernate filters definitions to make search using the 'searchTour' method of
+ * the {@link TourService}
+ * 
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
+
 @FilterDefs({
 		@FilterDef(name = FILTER_TOUR_DEPARTURE, parameters = {
 				@ParamDef(name = FILTER_PARAM_DEPARTURE, type = "java.lang.String") }),

@@ -14,6 +14,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * Simple JavaBean domain object that represents a {@code TourDetail}. This
+ * class contains additional information about {@link Tour}.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "tour_data")
 public class TourDetail implements Serializable {

@@ -1,6 +1,6 @@
 package com.gmail.kleinikov.stanislav.service.impl;
 
-import static com.gmail.kleinikov.stanislav.util.ConstantValue.ROLE_ADMIN;
+import static com.gmail.kleinikov.stanislav.util.ConstantValue.ROLE_USER;
 
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gmail.kleinikov.stanislav.dao.RoleDao;
 import com.gmail.kleinikov.stanislav.dao.UserDao;
 import com.gmail.kleinikov.stanislav.entity.Role;
 import com.gmail.kleinikov.stanislav.entity.User;
@@ -31,17 +30,26 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Autowired
-	private RoleDao roleDao;
-
-	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	/**
+	 * Encrypts password of the {@link User}, sets default {@link Role} as
+	 * ROLE_ADMIN and invokes the method 'save' of the userDao.
+	 *
+	 * @param user
+	 *            - The User to be save.
+	 * @see BCryptPasswordEncoder
+	 * @see HashSet
+	 * @see Role
+	 */
 	@Override
 	@Transactional
 	public void save(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		Set<Role> roles = new HashSet<>();
-		roles.add(roleDao.getOne(ROLE_ADMIN));
+		Role role = new Role();
+		role.setId(ROLE_USER);
+		roles.add(role);
 		user.setRoles(roles);
 		userDao.save(user);
 	}

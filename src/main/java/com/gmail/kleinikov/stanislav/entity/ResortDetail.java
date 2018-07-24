@@ -12,6 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code ResortDetail}. It's a
+ * additional information about {@link Resort}.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "resort_data")
 public class ResortDetail implements Serializable {

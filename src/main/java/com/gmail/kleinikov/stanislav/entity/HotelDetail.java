@@ -9,6 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Simple JavaBean domain object that represents a {@code HotelDetail}. Contains
+ * information relating to {@link Hotel}.
+ *
+ * @author Stanislav Kleinikov
+ * @version 1.0
+ */
 @Entity
 @Table(name = "hotel_data")
 public class HotelDetail implements Serializable {

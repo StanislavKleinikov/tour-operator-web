@@ -14,12 +14,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Create an account</title>
-    <jsp:include page="/WEB-INF/view/header.jsp"></jsp:include>	
+    <jsp:include page="/WEB-INF/view/component/header.jsp"></jsp:include>	
     <link href='<c:url value="/resources/css/registrationform.css" />' rel="stylesheet">
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/view/navbar.jsp"></jsp:include>	
+	<jsp:include page="/WEB-INF/view/component/navbar.jsp"></jsp:include>	
 	<div class="container">
       	<div class="row row-offcanvas row-offcanvas-right">
        		<div class="col-xs-12 col-sm-9">
@@ -53,9 +53,9 @@
 				    </form:form>
 			    </div>
 			</div>
-			<jsp:include page="/WEB-INF/view/navigator.jsp"></jsp:include>
+			<jsp:include page="/WEB-INF/view/component/navigator.jsp"></jsp:include>
 		</div>	
 	</div>
-<jsp:include page="/WEB-INF/view/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/component/footer.jsp"></jsp:include>
 </body>
 </html>

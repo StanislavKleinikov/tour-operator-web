@@ -11,6 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.gmail.kleinikov.stanislav.dao.NewsDao;
 import com.gmail.kleinikov.stanislav.entity.News;
 
+/**
+ * Implementation of {@link NewsDao} interface.
+ *
+ * @author Kleinikov Stanislav
+ * @version 1.0
+ */
 @Repository
 public class NewsDaoImpl implements NewsDao {
 
