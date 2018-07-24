@@ -48,7 +48,7 @@ public class TourDetail implements Serializable {
 	@Column(name = "end_date")
 	private Calendar endDate;
 
-	public long getTourId() {
+	public Long getTourId() {
 		return id;
 	}
 

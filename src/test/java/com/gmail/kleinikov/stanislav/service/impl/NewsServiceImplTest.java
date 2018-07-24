@@ -36,7 +36,6 @@ public class NewsServiceImplTest {
 	@Test
 	public void testGetAllNews() {
 		List<News> news = newsDao.getNews();
-		System.out.println(news);
 		assertNotNull(news);
 	}
 

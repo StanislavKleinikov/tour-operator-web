@@ -64,6 +64,7 @@ public class AdminController {
 
 	@GetMapping("/showFormNews")
 	public String formNews(@RequestParam(name = "newsId", required = false) Long id, Model model) {
+		System.out.println(id);
 		if (null != id) {
 			News news = newsService.getNews(id);
 			model.addAttribute("newsForm", news);
@@ -72,6 +73,7 @@ public class AdminController {
 			news.setStatus(new Status(STATUS_ACTIVE));
 			model.addAttribute("newsForm", news);
 		}
+
 		return PAGE_ADMIN_FORM_NEWS;
 	}
 

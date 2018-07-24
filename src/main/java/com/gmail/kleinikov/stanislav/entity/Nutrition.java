@@ -33,7 +33,7 @@ public class Nutrition implements Serializable {
 	@Column(name = "description")
 	private String description;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

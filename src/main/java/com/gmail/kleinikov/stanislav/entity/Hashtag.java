@@ -39,7 +39,7 @@ public class Hashtag implements Serializable {
 	@ManyToMany(mappedBy = "tags")
 	private Set<News> news = new HashSet<>();
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

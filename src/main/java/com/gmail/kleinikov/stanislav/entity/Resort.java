@@ -47,7 +47,7 @@ public class Resort implements Serializable {
 	@JoinColumn(name = "resort_detail")
 	private ResortDetail resortDetail;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

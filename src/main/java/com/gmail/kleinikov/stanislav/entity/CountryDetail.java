@@ -39,7 +39,7 @@ public class CountryDetail implements Serializable {
 	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
 	private List<Resort> resorts;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

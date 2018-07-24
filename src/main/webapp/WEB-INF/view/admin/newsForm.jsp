@@ -2,18 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 		<h3>Save News</h3>
 	
 		<form:form action="admin/saveNews" modelAttribute="newsForm" method="POST">
-
-			<%-- <form:hidden path="id" /> --%>
-					
+				<form:hidden path="id" />
 			<table>
 				<tbody>
 					<tr>
 						<td><label>Topic</label></td>
-						<td>
+						<td>				         						
 							<spring:bind path="topic">
 					            <div class="form-group ${status.error ? 'has-error' : ''}">
 									<form:input path="topic" />

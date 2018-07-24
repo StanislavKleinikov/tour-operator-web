@@ -57,7 +57,7 @@ public class News implements Serializable {
 	@JoinTable(name = "news_hashtag_list", joinColumns = @JoinColumn(name = "news_id"), inverseJoinColumns = @JoinColumn(name = "hashtag_id"))
 	private Set<Hashtag> tags = new HashSet<>();
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

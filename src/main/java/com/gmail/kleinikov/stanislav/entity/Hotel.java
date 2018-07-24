@@ -50,7 +50,7 @@ public class Hotel implements Serializable {
 	@JoinColumn(name = "hotel_detail")
 	private HotelDetail hotelDetail;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

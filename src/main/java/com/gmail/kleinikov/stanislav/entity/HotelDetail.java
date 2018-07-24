@@ -33,7 +33,7 @@ public class HotelDetail implements Serializable {
 	@Column(name = "pic")
 	private String pic;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

@@ -43,7 +43,7 @@ public class Country implements Serializable {
 	@JoinColumn(name = "country_detail")
 	private CountryDetail countryDetail;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

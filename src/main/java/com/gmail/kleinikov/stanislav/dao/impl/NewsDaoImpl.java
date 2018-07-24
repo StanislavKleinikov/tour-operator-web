@@ -56,6 +56,7 @@ public class NewsDaoImpl implements NewsDao {
 	@Override
 	public void saveNews(News news) {
 		Session currentSession = sessionFactory.getCurrentSession();
+		System.out.println(news);
 		currentSession.saveOrUpdate(news);
 	}
 

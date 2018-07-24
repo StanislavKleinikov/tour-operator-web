@@ -117,7 +117,7 @@ public class Tour implements Serializable {
 	@JoinColumn(name = "tour_detail")
 	private TourDetail tourDetail;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

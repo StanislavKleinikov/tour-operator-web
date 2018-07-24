@@ -146,7 +146,7 @@
   <build>
     <finalName>tour-operator-web</finalName>
 		<plugins>
-			<!-- <plugin>
+			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
@@ -157,7 +157,7 @@
 				</configuration>
 			</plugin>
 		
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sql-maven-plugin</artifactId>
                 <version>1.5</version>
@@ -180,7 +180,7 @@
 
                 <executions>
                     <execution>
-                        <id>database</id>
+                        <id>create-database-database</id>
                         <phase>process-test-resources</phase>
                         <goals>
                             <goal>execute</goal>

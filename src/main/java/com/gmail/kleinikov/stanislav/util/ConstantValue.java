@@ -24,7 +24,7 @@ public class ConstantValue {
 	public static final String PAGE_ABOUT = "about";
 	public static final String PAGE_CONTACT = "contact";
 	public static final String PAGE_SEARCH_RESULT = "searchresult";
-	public static final String PAGE_ADMIN = "admin/admin";
+	public static final String PAGE_ADMIN = "admin";
 	public static final String PAGE_ADMIN_LIST_NEWS = "admin/adminNewsList";
 	public static final String PAGE_ADMIN_LIST_TOUR = "admin/adminTourList";
 	public static final String PAGE_ADMIN_LIST_USER = "admin/adminUserList";
